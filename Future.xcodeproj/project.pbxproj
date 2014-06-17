@@ -10,6 +10,7 @@
 		0BB20808194F4177001DA6B9 /* Future.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BB20807194F4177001DA6B9 /* Future.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BB2080E194F4177001DA6B9 /* Future.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB20802194F4177001DA6B9 /* Future.framework */; };
 		0BB20815194F4177001DA6B9 /* FutureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB20814194F4177001DA6B9 /* FutureTests.swift */; };
+		0BB2081F194F4191001DA6B9 /* Future.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2081E194F4191001DA6B9 /* Future.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		0BB2080D194F4177001DA6B9 /* FutureTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FutureTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BB20813194F4177001DA6B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BB20814194F4177001DA6B9 /* FutureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureTests.swift; sourceTree = "<group>"; };
+		0BB2081E194F4191001DA6B9 /* Future.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Future.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 			children = (
 				0BB20807194F4177001DA6B9 /* Future.h */,
 				0BB20805194F4177001DA6B9 /* Supporting Files */,
+				0BB2081E194F4191001DA6B9 /* Future.swift */,
 			);
 			path = Future;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BB2081F194F4191001DA6B9 /* Future.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +320,7 @@
 		0BB20819194F4177001DA6B9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -327,12 +332,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		0BB2081A194F4177001DA6B9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
