@@ -18,17 +18,12 @@ enum FutureResult<T>{
     case Error(@auto_closure ()->NSError)
 }
 
-func future<T>(execution : ()->FutureResult<T>)(handler: FutureHandler<T>) {
+func future<T>(execution : ()->FutureResult<T>)(handler: FutureHandler<T>){
     var result : FutureResult<T>?
-    var done = false
     dispatch_async(dispatch_get_global_queue(0, 0)) {
         result = execution()
-        done = true
-    }
-    dispatch_async(dispatch_get_global_queue(0, 0)) {
-        while !done {}
         dispatch_async(dispatch_get_main_queue()) {
-        switch handler {
+            switch handler {
             case .FulFilled(let fulfilled):
                 switch result! {
                 case .Result(let value):
@@ -43,5 +38,4 @@ func future<T>(execution : ()->FutureResult<T>)(handler: FutureHandler<T>) {
             }
         }
     }
-    
 }
