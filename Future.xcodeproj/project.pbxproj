@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0BA772021954C461003C5046 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA772011954C461003C5046 /* Promise.swift */; };
+		0BA772041954CB04003C5046 /* PromiseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BA772031954CB04003C5046 /* PromiseTests.swift */; };
 		0BB20808194F4177001DA6B9 /* Future.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BB20807194F4177001DA6B9 /* Future.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BB2080E194F4177001DA6B9 /* Future.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB20802194F4177001DA6B9 /* Future.framework */; };
 		0BB20815194F4177001DA6B9 /* FutureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB20814194F4177001DA6B9 /* FutureTests.swift */; };
@@ -24,6 +26,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0BA772011954C461003C5046 /* Promise.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Promise.swift; sourceTree = "<group>"; };
+		0BA772031954CB04003C5046 /* PromiseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PromiseTests.swift; sourceTree = "<group>"; };
 		0BB20802194F4177001DA6B9 /* Future.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Future.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BB20806194F4177001DA6B9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0BB20807194F4177001DA6B9 /* Future.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Future.h; sourceTree = "<group>"; };
@@ -76,6 +80,7 @@
 				0BB20807194F4177001DA6B9 /* Future.h */,
 				0BB20805194F4177001DA6B9 /* Supporting Files */,
 				0BB2081E194F4191001DA6B9 /* Future.swift */,
+				0BA772011954C461003C5046 /* Promise.swift */,
 			);
 			path = Future;
 			sourceTree = "<group>";
@@ -92,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				0BB20814194F4177001DA6B9 /* FutureTests.swift */,
+				0BA772031954CB04003C5046 /* PromiseTests.swift */,
 				0BB20812194F4177001DA6B9 /* Supporting Files */,
 			);
 			path = FutureTests;
@@ -214,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BB2081F194F4191001DA6B9 /* Future.swift in Sources */,
+				0BA772021954C461003C5046 /* Promise.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +229,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BB20815194F4177001DA6B9 /* FutureTests.swift in Sources */,
+				0BA772041954CB04003C5046 /* PromiseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +415,7 @@
 				0BB2081A194F4177001DA6B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0BB2081B194F4177001DA6B9 /* Build configuration list for PBXNativeTarget "FutureTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +424,7 @@
 				0BB2081D194F4177001DA6B9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

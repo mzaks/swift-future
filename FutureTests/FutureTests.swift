@@ -175,4 +175,87 @@ class FutureTests: XCTestCase {
         
         waitForExpectationsWithTimeout(2, handler: nil);
     }
+    
+    
+    func test_concatenate_futures() {
+        // This is an example of a functional test case.
+        let expectation1 = expectationWithDescription("Should Wait for future 1");
+        
+        func add(n1:Int, n2:Int) -> ((handler : FutureHandler<Int>)->()) {
+            let error = NSError(domain: "Math", code: 2255, userInfo: nil)
+            return future {
+                FutureResult.Result(n1 + n2)
+            }
+        }
+        
+        add(5,7) (handler: FutureHandler.FulFilled({
+            XCTAssert($0 == 12)
+            add($0, 3)(handler: FutureHandler.FulFilled({
+                XCTAssert($0 == 15)
+                expectation1.fulfill()
+            }))
+        }))
+        
+        
+        waitForExpectationsWithTimeout(2, handler: nil);
+    }
+    
+    func test_concatenate_futures_with_operator() {
+        // This is an example of a functional test case.
+        let expectation1 = expectationWithDescription("Should Wait for future 1");
+        
+        func add(n1:Int, n2:Int) -> ((handler : FutureHandler<Int>)->()) {
+            let error = NSError(domain: "Math", code: 2255, userInfo: nil)
+            return future {
+                FutureResult.Result(n1 + n2)
+            }
+        }
+        
+        let f : ((handler : FutureHandler<String>)->()) = add(5,7) ++ {
+                (input : Int) -> String in
+                "The input was: \(input)"
+            } ++ {
+                (input : String) -> String in
+                input.lowercaseString
+        }
+        
+        f (handler: FutureHandler.FulFilled({
+            XCTAssertEqual($0, "the input was: 12")
+            expectation1.fulfill()
+            }))
+        
+        waitForExpectationsWithTimeout(2, handler: nil);
+    }
+    
+    func test_concatenate_failed_future() {
+        // This is an example of a functional test case.
+        let expectation1 = expectationWithDescription("Should Wait for future 1");
+        
+        func add(n1:Int, n2:Int) -> ((handler : FutureHandler<Int>)->()) {
+            let error = NSError(domain: "Math", code: 2255, userInfo: nil)
+            return future {
+                FutureResult.Error(error)
+            }
+        }
+        
+        let f  = add(5,7) ++ {
+            
+            (input : Int) -> String in
+            XCTAssert(false)
+            return "The input was: \(input)"
+        }
+        
+        f (handler: FutureHandler.FulFilled({
+            XCTAssert(false)
+            XCTAssertNil($0)
+            })
+        )
+        f (handler: FutureHandler.Failed {
+            XCTAssertNotNil($0)
+            XCTAssertEqual($0.domain!, "Math", "Unexpected error : \($0)")
+            expectation1.fulfill();
+            })
+        
+        waitForExpectationsWithTimeout(2, handler: nil);
+    }
 }

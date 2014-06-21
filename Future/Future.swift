@@ -19,7 +19,7 @@ enum FutureResult<T>{
 }
 
 func future<T>(execution : ()->FutureResult<T>)(handler: FutureHandler<T>){
-    var result : FutureResult<T>?
+    var result : FutureResult<T>!
     dispatch_async(dispatch_get_global_queue(0, 0)) {
         result = execution()
         dispatch_async(dispatch_get_main_queue()) {
@@ -37,5 +37,26 @@ func future<T>(execution : ()->FutureResult<T>)(handler: FutureHandler<T>){
                 }
             }
         }
+    }
+}
+
+operator infix ++ { associativity left precedence 140 }
+func ++<T,U> (left: (handler: FutureHandler<T>)->(), right:(T)->(U)) -> (handler: FutureHandler<U>)->() {
+    
+    return future {
+        var result : FutureResult<U>!
+        let sem = dispatch_semaphore_create(0);
+        left(handler: FutureHandler.FulFilled({
+                input in
+                result = FutureResult.Result(right(input))
+                dispatch_semaphore_signal(sem);
+            }))
+        left(handler: FutureHandler.Failed({
+                error in
+                result = FutureResult.Error(error)
+                dispatch_semaphore_signal(sem);
+            }))
+        dispatch_semaphore_wait(sem, DISPATCH_TIME_FOREVER);
+        return result!
     }
 }
